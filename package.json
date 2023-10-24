@@ -1,0 +1,23 @@
+{
+  "name": "notifier-client",
+  "version": "0.0.1",
+  "description": "just a notifier",
+  "main": "index.ts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "dev": "set DEBUG=* & ts-node index.ts"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.10",
+    "@types/node": "^20.4.1",
+    "@types/node-notifier": "^8.0.3",
+    "debug": "^4.3.4",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "node-notifier": "^10.0.1"
+  }
+}
