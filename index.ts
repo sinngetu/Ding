@@ -6,13 +6,7 @@ import notifier from 'node-notifier'
 import config from './config.json' assert { type: 'json' }
 
 const debug = Debug('subscribe-client')
-const socket = (() => {
-    try { return net.connect(config.port, config.host, () => debug('server connected!')) }
-    catch(e) {
-        notifier.notify({ title: '连接失败！！请重试！' })
-        process.exit(0)
-    }
-})()
+const socket = net.connect(config.port, config.host, () => debug('server connected!'))
 
 interface New {
     link: string
@@ -40,14 +34,10 @@ socket.on('data', chunk => {
     })
 })
 
-socket.on('error', () => {
-    notifier.notify({
-        title: '通知系统挂了！快重启！！',
-        message: '系统恢复后重启来链接',
-        time: 0
-    })
-
-    process.exit(0)
+socket.on('error', async () => {
+    console.log('\n---------------------------------------')
+    console.log('连接失败！！请重试！')
+    console.log('---------------------------------------\n')
 })
 
 function getMedium(medium: number) {
